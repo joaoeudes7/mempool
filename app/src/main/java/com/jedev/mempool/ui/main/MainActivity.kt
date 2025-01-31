@@ -26,45 +26,13 @@ import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
-            val vm = koinViewModel<MainViewModel>()
-
-            val scope = rememberCoroutineScope()
-            val snackBarHostState = remember { SnackbarHostState() }
-
-            LaunchedEffect(true) {
-                vm.snackBarMessage.collect { message ->
-                    scope.launch {
-                        snackBarHostState.showSnackbar(message)
-                    }
-                }
-            }
-
-            MemPoolTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = {
-                        TopAppBar(
-                            colors = topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.primary
-                            ),
-                            title = {
-                                Text("MemPool | Lightning ⚡")
-                            }
-                        )
-                    },
-                    content = {
-                        ListRankingLightning(Modifier.padding(it))
-                    },
-                    snackbarHost = {
-                        SnackbarHost(hostState = snackBarHostState)
-                    }
-                )
-            }
+            MainContent()
         }
     }
 }
