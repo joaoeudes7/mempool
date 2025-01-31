@@ -28,6 +28,10 @@ data class NodeConnectivityModel(
         get() {
             val channelsK = channels / 1000.0
 
-            return "%.2f".format(channelsK) + " K"
+            return if (channelsK > 1) {
+                "%.2f".format(channelsK) + " K"
+            } else {
+                channels.toString()
+            }
         }
 }
