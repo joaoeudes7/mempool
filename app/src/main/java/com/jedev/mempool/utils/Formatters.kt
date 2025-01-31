@@ -7,7 +7,18 @@ import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.byUnicodePattern
 import kotlinx.datetime.toLocalDateTime
 
-object DateUtils {
+object Formatters {
+    fun formatAmountSats(amount: Long): String {
+        val capacityInBtc = amount / 1000_000_000.0
+
+        return if (capacityInBtc > 0.00000001) {
+            "%.8f".format(capacityInBtc) + " BTC"
+        } else {
+            val capacityInSat = amount / 1000.0
+            "%.2f".format(capacityInSat) + " sats"
+        }
+    }
+
     @OptIn(FormatStringsInDatetimeFormats::class)
     fun formatDate(
         date: Long,

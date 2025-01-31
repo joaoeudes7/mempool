@@ -1,6 +1,6 @@
 package com.jedev.mempool.domain.model
 
-import com.jedev.mempool.utils.DateUtils
+import com.jedev.mempool.utils.Formatters
 
 data class NodeConnectivityModel(
     val publicKey: String,
@@ -16,17 +16,13 @@ data class NodeConnectivityModel(
         get() = listOf(city, country).filterNotNull().joinToString(", ")
 
     val updatedAtFormatted: String
-        get() = DateUtils.formatDate(updatedAt)
+        get() = Formatters.formatDate(updatedAt)
 
     val firstSeenFormatted: String
-        get() = DateUtils.formatDate(firstSeen)
+        get() = Formatters.formatDate(firstSeen)
 
     val capacityFormatted: String
-        get() {
-            val satsB = capacity / 1000_000_000.0
-
-            return "%.1f".format(satsB) + " B sats"
-        }
+        get() = Formatters.formatAmountSats(capacity)
 
     val channelsFormatted: String
         get() {
