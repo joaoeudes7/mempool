@@ -15,6 +15,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import com.jedev.mempool.ui.features.listRankingNodes.ListRankingLightning
 import com.jedev.mempool.ui.theme.MemPoolTheme
 import kotlinx.coroutines.launch
@@ -45,7 +46,11 @@ fun MainContent() {
                         containerColor = MaterialTheme.colorScheme.primary
                     ),
                     title = {
-                        Text("MemPool | Lightning ⚡")
+                        Text(
+                            text = "MemPool | Lightning ⚡",
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
                     }
                 )
             },
