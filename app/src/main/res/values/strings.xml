@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MemPool</string>
+    <string name="copy">Copy</string>
+    <string name="location">Location</string>
+    <string name="pk_copied">PK copiado!</string>
 </resources>
